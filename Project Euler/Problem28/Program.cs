@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Problem28
 {
@@ -11,29 +7,44 @@ namespace Problem28
     {
         static void Main(string[] args)
         {
-            //右下の値用
-            int dif = 2;
-            int dif2 = 8;
-            int rd = 3;
+            Debug.WriteLine(NumberSpiralDiagonals(1001));
+        }
 
-            //1週分用
-            Int64 add = 2;
-            Int64 c = 0;
-            Int64 sum = 1;
+        static Int64 NumberSpiralDiagonals(int size)
+        {
+            int loops = (size - 1) / 2;
 
-            for (int width = 3; width <= 1001; width+=2)
+            int a = 0;
+            Int64 sum = 0;
+            for (int m = 0; m <= loops; m++)
             {
-                //一週分の値を求める
-                c = 4 * rd + 6 * add;
-                add += 2;
-
-                sum += c;
-                Debug.WriteLine(width + ":" + rd + ":" + c+":"+sum);
-
-                //次の右下の値を求める
-                dif += dif2;
-                rd += dif;
+                a = ComputeA(a, m - 1);
+                sum += LoopSum(a, m);
             }
+
+            return sum;
+        }
+
+        /// <summary>
+        /// m週目の右下の値aを求める
+        /// </summary>
+        static int ComputeA(int a, int m)
+        {
+            if (m < 0) return 1;
+
+            int b = 2 + 8 * m;
+
+            return a + b;
+        }
+
+        /// <summary>
+        /// 一周分の和を求める
+        /// </summary>
+        static Int64 LoopSum(int a, int m)
+        {
+            if (m == 0) return a;
+
+            return 4 * a + 12 * m;
         }
     }
 }
