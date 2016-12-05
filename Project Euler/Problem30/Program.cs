@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Problem30
 {
@@ -37,16 +33,12 @@ namespace Problem30
                                 for (int f = 0; f < 10; f++)
                                 {
                                     Int64 F = Part(f, 0);
-                                    
-                                    if(A+B+C+D+E+F == 0)
+
+                                    if (A + B + C + D + E + F == 0)
                                     {
                                         Int64 n = Number(a, b, c, d, e, f);
 
-                                        if (n != 1)
-                                        {
-                                            Debug.WriteLine(n);
-                                            sum += n;
-                                        }
+                                        sum += n;
                                     }
                                 }
                             }
@@ -55,14 +47,21 @@ namespace Problem30
                 }
             }
 
-            return sum;
+            //1 = 1^5 が含まれるので1引く
+            return sum - 1;
         }
 
+        /// <summary>
+        /// 項の塊(要素？)を処理する
+        /// </summary>
         static Int64 Part(int n, int y)
         {
             return (Int64)(n * (Math.Pow(10, y) - Math.Pow(n, 4)));
         }
 
+        /// <summary>
+        /// 桁ごとにバラってるのを１つの数にする
+        /// </summary>
         static Int64 Number(params int[] d)
         {
             Int64 n = 0;
