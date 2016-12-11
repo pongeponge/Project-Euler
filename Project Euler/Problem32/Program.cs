@@ -1,32 +1,33 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Problem32
 {
     class Program
     {
+        //使う数字
         int[] Numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
         static void Main(string[] args)
         {
-            Debug.WriteLine(PandigitalProducts());           
+            Debug.WriteLine(PandigitalProducts());
         }
 
         static Int64 PandigitalProducts()
         {
             List<int> answers = new List<int>();
 
-            CreateFormula(1,9,1234, 9876, answers);
-            CreateFormula(12,98,123, 987, answers);
+            CreateFormula(1, 9, 1234, 9876, answers);
+            CreateFormula(12, 98, 123, 987, answers);
 
-
+            //重複を削除して総和を取る
             return answers.Distinct().Sum();
         }
 
+        //数式の作成
         static void CreateFormula(int amin, int amax, int bmin, int bmax, List<int> ans)
         {
             StringBuilder sb = new StringBuilder();
@@ -55,6 +56,7 @@ namespace Problem32
             }
         }
 
+        //式のチェック
         static bool CheckNumbers(char[] n)
         {
             Array.Sort(n);

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace Problem31
 {
     class Program
     {
+        //使えるコイン(端数が出ても1pで払えるので気にしない)
         static int[] coins = { 2, 5, 10, 20, 50, 100, 200};
+        //パターン数
         static int sum = 0;
 
         static void Main(string[] args)
@@ -18,13 +15,10 @@ namespace Problem31
             Debug.WriteLine(sum);
         }
 
-        static Int64 CoinSums()
-        {
-            return 0;
-        }
-
+        //コインの支払いパターンを調べる
         static void reco(int zan, int c)
         {
+            //支払いパターン確定
             if (c < 0)
             {
                 sum++;
