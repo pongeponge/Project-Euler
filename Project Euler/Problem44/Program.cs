@@ -35,19 +35,24 @@ namespace Problem44
         /// <returns>解を出力する/見つからない場合は-1を返す</returns>
         public int Solve()
         {
+            //最初にペンタゴンナンバー1番目を登録する
             numbers.Add(this.CalcPentagonNumber(1));
 
-            for (int count = 2; count != int.MaxValue; count++)
+            for (int max = 2; max != int.MaxValue; max++)
             {
+                //numbersの尻側から降順にテストをする
                 for (int i = numbers.Count - 2; i >= 0; i--)
                 {
+                    //i番目のペンタゴンナンバーとmax-1番目のペンタンゴンナンバーを加減算テストする
                     if (this.TestPentagonNumber(i) == true)
                     {
+                        //テスト合格なら差を返す
                         return numbers[numbers.Count - 1] - numbers[i];
                     }
                 }
 
-                numbers.Add(this.CalcPentagonNumber(count));
+                //テスト合格が無ければmax番目のペンタゴンナンバーを加える
+                numbers.Add(this.CalcPentagonNumber(max));
             }
 
             return -1;
